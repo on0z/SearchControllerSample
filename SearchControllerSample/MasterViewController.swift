@@ -10,10 +10,10 @@ import UIKit
 class MasterViewController: UITableViewController, SelectedCellProtocol {
     
     //データを定義
-    let data: [String] = ["this is a testString",
-                          "please add your sentence.",
-                          "I like Apples",
-                          "Do you like apples?",
+    let data: [String] = ["This is a testString",
+                          "Please add your sentence.",
+                          "I like Apple",
+                          "Do you like an apple?",
                           "今日はいい天気ですね",
                           "はい、いい 天気です",
                           "私はAppleが好きです",

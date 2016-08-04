@@ -259,6 +259,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MU7M8NU5KN;
 				INFOPLIST_FILE = SearchControllerSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail-onozdev.SearchControllerSample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,6 +273,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = MU7M8NU5KN;
 				INFOPLIST_FILE = SearchControllerSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail-onozdev.SearchControllerSample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -298,6 +300,7 @@
 				EBFF15861D523AB80092CC07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

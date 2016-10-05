@@ -73,7 +73,7 @@ class SearchResultViewController: UITableViewController, UISearchResultsUpdating
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let DetailView = DetailViewController()
-        DetailView.text = MasterViewController().data[indexPath.row]
+        DetailView.text = self.filteredItems[indexPath.row]
         self.delegate?.didSelectedCell(view: DetailView)
     }
     

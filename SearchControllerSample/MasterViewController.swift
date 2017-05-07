@@ -48,6 +48,14 @@ class MasterViewController: UITableViewController, SelectedCellProtocol {
         self.tableView.tableHeaderView = searchBar //TableViewの一番上にsearchBarを設置
         searchBar.sizeToFit()
         mySearchController.searchResultsUpdater = resultController //検索されると動くViewを設定
+        
+        //ForceTouch
+        if #available(iOS 9.0, *){
+            resultController.forceTouch = self.traitCollection.forceTouchCapability
+            if self.traitCollection.forceTouchCapability == .available{
+                self.registerForPreviewing(with: self, sourceView: self.view)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +64,14 @@ class MasterViewController: UITableViewController, SelectedCellProtocol {
     
     func didSelectedCell(view: DetailViewController) {
         self.navigationController?.pushViewController(view, animated: true)
+    }
+    
+    func didPopCell(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        if #available(iOS 9.0, *) {
+            self.previewingContext(previewingContext, commit: viewControllerToCommit)
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     // MARK: - Table view data source
@@ -85,8 +101,27 @@ class MasterViewController: UITableViewController, SelectedCellProtocol {
     }
 }
 
+@available(iOS 9.0, *)
+extension MasterViewController: UIViewControllerPreviewingDelegate{
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        print("peek")
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
+}
+
 //Protocols
-protocol SelectedCellProtocol {
+protocol SelectedCellProtocol: class {
     func didSelectedCell(view: DetailViewController)
+    func didPopCell(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController)
+}
+
+extension SelectedCellProtocol{
+    func didPopCell(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController){
+        
+    }
 }
 

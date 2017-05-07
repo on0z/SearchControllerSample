@@ -7,17 +7,27 @@
 
 import UIKit
 
-class SearchResultViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
+class SearchResultViewController:
+    UITableViewController,
+    UISearchResultsUpdating,
+    UISearchBarDelegate {
     
     //検索にひっかっかったものを入れる変数
     var filteredItems: [String] = []
-    var delegate: SelectedCellProtocol?
+    weak var delegate: SelectedCellProtocol?
+    var forceTouch: UIForceTouchCapability = .unknown
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //セルの名前を設定
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        if #available(iOS 9.0, *){
+            if forceTouch == .available{
+                self.registerForPreviewing(with: self, sourceView: self.view)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,5 +113,17 @@ class SearchResultViewController: UITableViewController, UISearchResultsUpdating
             }
         }
         tableView.reloadData()
+    }
+}
+
+@available(iOS 9.0, *)
+extension SearchResultViewController: UIViewControllerPreviewingDelegate{
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        print("peek")
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        
     }
 }

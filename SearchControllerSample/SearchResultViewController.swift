@@ -124,6 +124,6 @@ extension SearchResultViewController: UIViewControllerPreviewingDelegate{
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        
+        self.delegate?.didPopCell(previewingContext, commit: viewControllerToCommit)
     }
 }
